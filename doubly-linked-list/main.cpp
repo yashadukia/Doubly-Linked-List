@@ -135,10 +135,7 @@ void insertAtAnyPosition(int pos, int data)
             {
                 prevTemp = temp;
                 temp = temp->next;
-//                nextTemp = temp->next;
                 count++;
-//                cout<<"Count: "<<count<<NEWLINE;
-//                cout<<"next data = "<<temp->data<<NEWLINE;
             }
         }
         prevTemp->next = newNode;
