@@ -20,10 +20,12 @@ void insertAtEnd(int data);
 int main(int argc, const char * argv[]) {
     // insert code here...
     std::cout << "Hello, World!\n";
-    insertAtBeginning(8);
+    cout<<"This is Doubly Linked List Implementation"<<NEWLINE<<"Add node in beginning, at any pos or at the end"<<NEWLINE<<NEWLINE;
     insertAtBeginning(6);
     insertAtBeginning(5);
+    insertAtEnd(8);
     insertAtAnyPosition(3, 7);
+    insertAtEnd(9);
     display();
     return 0;
 }
@@ -72,10 +74,9 @@ void display()
 
 void insertAtBeginning(int data)
 {
-    cout<<"Inserting data at beginning"<<NEWLINE;
+//    cout<<"Inserting data at beginning"<<NEWLINE;
     
     Node *temp = new Node();
-//    head = temp;
     
     if (head == NULL)
     {
@@ -96,7 +97,31 @@ void insertAtBeginning(int data)
 
 void insertAtEnd(int data)
 {
+    Node *temp = new Node();
+    Node *end = new Node();
     
+    if (head == NULL)
+    {
+        head = temp;
+        head->prev = NULL;
+        head->data = data;
+        head->next = NULL;
+    }
+    
+    else
+    {
+        temp = head;
+        
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        
+        end->data = data;
+        end->prev = temp;
+        end->next = NULL;
+        temp->next = end;
+    }
 }
 
 void insertAtAnyPosition(int pos, int data)
