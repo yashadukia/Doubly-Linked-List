@@ -16,6 +16,7 @@ void display();
 void insertAtBeginning(int data);
 void insertAtAnyPosition(int pos, int data);
 void insertAtEnd(int data);
+int deleteNode(int pos);
 
 int main(int argc, const char * argv[]) {
     // insert code here...
@@ -27,6 +28,8 @@ int main(int argc, const char * argv[]) {
     insertAtAnyPosition(3, 7);
     insertAtEnd(9);
     display();
+    deleteNode(6);
+//    display();
     return 0;
 }
 
@@ -169,4 +172,55 @@ void insertAtAnyPosition(int pos, int data)
         newNode->next = temp;
         temp->prev = newNode;
     }
+}
+
+int deleteNode(int pos)
+{
+    Node *temp = new Node();
+    Node *left = new Node();
+    int count = 1;
+    temp = head;
+    
+    while (count < pos)
+    {
+        if (pos == 1)
+        {
+            break;
+        }
+        if (temp->next != NULL)
+        {
+            left = temp;
+            temp = temp->next;
+            count++;
+        }
+        else
+        {
+            cout<<"Invalid position to Delete"<<NEWLINE;
+            return 0;
+        }
+    }
+    
+    if (pos == 1)
+    {
+        temp = temp->next;
+        temp->prev = NULL;
+        head = temp;
+    }
+    else
+    {
+        left->next = temp->next;
+        
+        if (temp->next == NULL)
+        {
+            display();
+            return 0;
+        }
+        else
+        {
+            temp = temp->next;
+            temp->prev = left;
+        }
+    }
+    display();
+    return 0;
 }
